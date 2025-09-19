@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamdi Ali Abdullahi - Cybersecurity Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            cursor: crosshair;
+        }
+
+        /* Cybersecurity Theme Variables */
+        :root {
+            --cyber-green: #00ff00;
+            --cyber-blue: #00ffff;
+            --cyber-red: #ff0040;
+            --cyber-orange: #ff6600;
+            --dark-bg: #0a0a0a;
+            --terminal-bg: #1a1a1a;
+            --card-bg: rgba(26, 26, 26, 0.9);
+            --glass-bg: rgba(0, 255, 0, 0.05);
+            --border-glow: rgba(0, 255, 0, 0.5);
+        }
+
+        /* Matrix Rain Background */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at center, #0d1b0d 0%, #061206 50%, #000000 100%);
+        }
+
+        .matrix-rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            width: 20px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            color: var(--cyber-green);
+            animation: matrixFall linear infinite;
+            text-shadow: 0 0 5px var(--cyber-green);
+        }
+
+        @keyframes matrixFall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Scanning Line Effect */
+        .scan-line {
+            position: fixed;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyber-green), transparent);
+            animation: scan 4s linear infinite;
+            z-index: -1;
+            box-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* Terminal Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            border-bottom: 2px solid var(--cyber-green);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .terminal-prompt {
+            color: var(--cyber-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--cyber-green);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        .nav-link::before {
+            content: '> ';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            opacity: 1;
+        }
+
+        /* Hero Section - Hacking Terminal Style */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .hero-terminal {
+            background: var(--terminal-bg);
+            border: 2px solid var(--cyber-green);
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--cyber-green);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: var(--cyber-red); }
+        .dot.orange { background: var(--cyber-orange); }
+        .dot.green { background: var(--cyber-green); }
+
+        .terminal-title {
+            color: var(--cyber-green);
+            font-size: 0.9rem;
+        }
+
+        .terminal-content {
+            line-height: 1.8;
+        }
+
+        .prompt-line {
+            color: var(--cyber-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .name-display {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--cyber-blue);
+            font-weight: bold;
+            text-shadow: 0 0 20px var(--cyber-blue);
+            margin: 1rem 0;
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--cyber-orange);
+            margin-bottom: 1rem;
+        }
+
+        .typing-cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--cyber-green);
+            margin-bottom: 3rem;
+            text-align: center;
+            text-shadow: 0 0 15px var(--cyber-green);
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '[';
+            color: var(--cyber-red);
+            margin-right: 0.5rem;
+        }
+
+        .section-title::after {
+            content: ']';
+            color: var(--cyber-red);
+            margin-left: 0.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            background: var(--card-bg);
+            border: 1px solid var(--cyber-green);
+            border-radius: 10px;
+            padding: 2rem;
+            line-height: 1.8;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skills-category {
+            background: var(--card-bg);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .skills-category h4 {
+            color: var(--cyber-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .skill-item::before {
+            content: '●';
+            color: var(--cyber-green);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--cyber-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: black;
+        }
+
+        .project-title {
+            color: var(--cyber-blue);
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--cyber-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid var(--cyber-blue);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            background: transparent;
+            border: 1px solid var(--cyber-green);
+            color: var(--cyber-green);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            background: var(--cyber-green);
+            color: black;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        /* Contact Terminal */
+        .contact-terminal {
+            background: var(--terminal-bg);
+            border: 2px solid var(--cyber-green);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .contact-form {
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--dark-bg);
+            border: 1px solid var(--cyber-green);
+            color: var(--cyber-green);
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .form-input::placeholder {
+            color: rgba(0, 255, 0, 0.6);
+        }
+
+        .submit-btn {
+            background: var(--cyber-green);
+            color: black;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cyber-blue);
+            text-decoration: none;
+            padding: 0.8rem;
+            border: 1px solid var(--cyber-blue);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Resume Section */
+        .resume-section {
+            text-align: center;
+            background: var(--card-bg);
+            border: 2px solid var(--cyber-orange);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            background: var(--cyber-orange);
+            color: black;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--terminal-bg);
+            border-top: 2px solid var(--cyber-green);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: var(--cyber-green);
+            text-decoration: none;
+            padding: 0.5rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-terminal {
+                margin: 0 1rem;
+            }
+
+            .name-display {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--cyber-red);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--cyber-blue);
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 14%, 15%, 49%, 50%, 99%, 100% { transform: translate(0); }
+            15%, 49% { transform: translate(-2px, -1px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 20%, 21%, 62%, 63%, 99%, 100% { transform: translate(0); }
+            21%, 62% { transform: translate(2px, 1px); }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loading-text {
+            color: var(--cyber-green);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: var(--cyber-green);
+            width: 0;
+            animation: loadProgress 3s ease-in-out;
+            box-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loading-text">INITIALIZING SECURE CONNECTION...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Matrix Background -->
+    <div class="matrix-bg">
+        <div class="matrix-rain" id="matrixRain"></div>
+    </div>
+    <div class="scan-line"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="terminal-prompt">hamdi@cybersec:~$</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">home</a>
+                <a href="#about" class="nav-link">about</a>
+                <a href="#projects" class="nav-link">projects</a>
+                <a href="#resume" class="nav-link">resume</a>
+                <a href="#contact" class="nav-link">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-terminal">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot orange"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="terminal-title">terminal@cybersec-portfolio</div>
+            </div>
+            <div class="terminal-content">
+                <div class="prompt-line">hamdiissack30@gmail.com:~$ whoami</div>
+                <div class="name-display glitch" data-text="HAMDI ALI ABDULLAHI" id="nameDisplay">HAMDI ALI ABDULLAHI</div>
+                <div class="prompt-line">hamdi@cybersec:~$ cat profile.txt</div>
+                <div class="tagline">Computer Science Student | Cybersecurity Specialist</div>
+                <div class="prompt-line">hamdi@cybersec:~$ mission --display</div>
+                <p style="margin: 1rem 0; line-height: 1.6;">
+                    Passionate about technology, cybersecurity, and building innovative projects that solve real-world problems. 
+                    Currently advancing through my Computer Science journey with a focus on digital security and ethical hacking.
+                </p>
+                <div class="prompt-line">hamdi@cybersec:~$ <span class="typing-cursor">|</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">ABOUT</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3 style="color: var(--cyber-blue); margin-bottom: 1rem;">Biography</h3>
+                <p style="margin-bottom: 1rem;">
+                    I am Hamdi Ali Abdullahi, a second-year Computer Science student with a specialized focus on cybersecurity. 
+                    My academic journey is driven by a passion for understanding digital threats and developing robust security solutions.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Beyond technical skills, I have a deep interest in writing essays on AI, mathematics, and philosophy, 
+                    which helps me approach cybersecurity challenges from multiple perspectives and think critically about 
+                    the ethical implications of technology.
+                </p>
+                <p>
+                    I believe in building projects that not only demonstrate technical proficiency but also address 
+                    real-world security challenges that organizations and individuals face in our increasingly digital world.
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skills-category">
+                    <h4>Programming Languages</h4>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">C++</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">Bash</div>
+                </div>
+                <div class="skills-category">
+                    <h4>Cybersecurity Skills</h4>
+                    <div class="skill-item">Penetration Testing</div>
+                    <div class="skill-item">Metadata Analysis</div>
+                    <div class="skill-item">Data Privacy Tools</div>
+                    <div class="skill-item">Network Security</div>
+                    <div class="skill-item">Fraud Detection</div>
+                </div>
+                <div class="skills-category">
+                    <h4>Development Tools</h4>
+                    <div class="skill-item">GitHub</div>
+                    <div class="skill-item">Node-RED</div>
+                    <div class="skill-item">Django</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">Firebase</div>
+                </div>
+                <div class="skills-category">
+                    <h4>Specializations</h4>
+                    <div class="skill-item">Network Configuration</div>
+                    <div class="skill-item">Data Leak Detection</div>
+                    <div class="skill-item">Identity Theft Prevention</div>
+                    <div class="skill-item">Privacy Risk Assessment</div>
+                    <div class="skill-item">AI Security</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">PROJECTS</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🏥</div>
+                    <div class="project-title">Medical Health Management System</div>
+                </div>
+                <div class="project-description">
+                    Full-stack healthcare management solution with Django REST API backend and React Material UI frontend. 
+                    Manages patients, doctors, and appointments with real-time data synchronization and secure patient record handling.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Django REST</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Material UI</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">₿</div>
+                    <div class="project-title">Firebase Crypto Price Tracker</div>
+                </div>
+                <div class="project-description">
+                    Responsive web application built with React and Firebase featuring secure authentication, 
+                    real-time cryptocurrency prices via CoinGecko API, and comprehensive tracking of 50+ digital currencies.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">CoinGecko API</span>
+                    <span class="tech-tag">Authentication</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Live App</a>
+                    <a href="#" class="project-link">Source</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🌤️</div>
+                    <div class="project-title">Node-RED Weather Automation</div>
+                </div>
+                <div class="project-description">
+                    Automated weather notification system using Node-RED that sends morning and evening weather updates. 
+                    Features comprehensive Docsify documentation and extensible architecture for complex automation workflows.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Node-RED</span>
+                    <span class="tech-tag">IoT</span>
+                    <span class="tech-tag">Docsify</span>
+                    <span class="tech-tag">API Integration</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Documentation</a>
+                    <a href="#" class="project-link">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🛡️</div>
+                    <div class="project-title">AI-Powered Fraud Detection System</div>
+                </div>
+                <div class="project-description">
+                    Advanced cybersecurity project focusing on identity theft and synthetic fraud detection. 
+                    Uses machine learning to analyze financial data patterns, detect anomalies, and provide real-time fraud alerts.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Fraud Detection</span>
+                    <span class="tech-tag">Data Analysis</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Research</a>
+                    <a href="#" class="project-link">Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🇰🇪</div>
+                    <div class="project-title">Kenya Data Watch</div>
+                </div>
+                <div class="project-description">
+                    Large-scale cybersecurity platform designed to monitor and detect data leaks across Kenya. 
+                    A national-level project built to impress organizations like Safaricom and Microsoft Kenya with comprehensive data protection capabilities.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Cybersecurity</span>
+                    <span class="tech-tag">Data Monitoring</span>
+                    <span class="tech-tag">Leak Detection</span>
+                    <span class="tech-tag">National Security</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Platform</a>
+                    <a href="#" class="project-link">Details</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔍</div>
+                    <div class="project-title">Personal Metadata Risk Analyzer</div>
+                </div>
+                <div class="project-description">
+                    Privacy-focused tool that analyzes personal files, images, and browser metadata to calculate comprehensive privacy risk scores. 
+                    Combines data privacy awareness with practical cybersecurity technology for personal protection.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Metadata Analysis</span>
+                    <span class="tech-tag">Privacy Tools</span>
+                    <span class="tech-tag">Risk Assessment</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Analyze</a>
+                    <a href="#" class="project-link">Source</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🌐</div>
+                    <div class="project-title">Cisco Packet Tracer Network</div>
+                </div>
+                <div class="project-description">
+                    Comprehensive network infrastructure project using Cisco Packet Tracer. Configured multiple routers, web servers, 
+                    DNS, DHCP servers, wireless capabilities, and email systems with proper IP addressing and inter-device communication.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Cisco Packet Tracer</span>
+                    <span class="tech-tag">Network Security</span>
+                    <span class="tech-tag">Router Configuration</span>
+                    <span class="tech-tag">Infrastructure</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Network Diagram</a>
+                    <a href="#" class="project-link">Config Files</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <h2 class="section-title">EXPERIENCE</h2>
+        <div class="about-text" style="max-width: 800px; margin: 0 auto;">
+            <h3 style="color: var(--cyber-blue); margin-bottom: 1rem;">Professional & Academic Engagements</h3>
+            <p style="margin-bottom: 1rem;">
+                Throughout my academic journey, I have actively participated in various technology and cybersecurity initiatives, 
+                including collaborative group assignments focused on network security implementations and data protection strategies.
+            </p>
+            <p style="margin-bottom: 1rem;">
+                I have contributed to open-source cybersecurity projects and participated in various tech workshops and seminars 
+                that have enhanced my understanding of modern security challenges and emerging threat landscapes.
+            </p>
+            <p>
+                My volunteer work includes helping local organizations improve their digital security posture through 
+                risk assessments and implementing basic cybersecurity best practices.
+            </p>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section">
+        <h2 class="section-title">ACHIEVEMENTS</h2>
+        <div class="skills-grid">
+            <div class="skills-category">
+                <h4>Certifications</h4>
+                <div class="skill-item">Cybersecurity Fundamentals</div>
+                <div class="skill-item">Network Security Basics</div>
+                <div class="skill-item">Python Programming</div>
+                <div class="skill-item">Web Development</div>
+            </div>
+            <div class="skills-category">
+                <h4>Academic Milestones</h4>
+                <div class="skill-item">Dean's List Recognition</div>
+                <div class="skill-item">Top Computer Science Student</div>
+                <div class="skill-item">Outstanding Project Awards</div>
+                <div class="skill-item">Research Publication</div>
+            </div>
+            <div class="skills-category">
+                <h4>Skills Development</h4>
+                <div class="skill-item">Advanced Penetration Testing</div>
+                <div class="skill-item">Ethical Hacking Workshop</div>
+                <div class="skill-item">AI Security Seminar</div>
+                <div class="skill-item">Digital Forensics Training</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <h2 class="section-title">RESUME</h2>
+        <div class="resume-section">
+            <h3 style="color: var(--cyber-orange); margin-bottom: 1rem; font-size: 1.5rem;">Professional Summary</h3>
+            <p style="margin-bottom: 2rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Dedicated Computer Science student specializing in cybersecurity with hands-on experience in 
+                penetration testing, fraud detection systems, and secure application development. 
+                Proven track record of building innovative security solutions and contributing to open-source projects.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="download-btn" onclick="downloadResume()">📄 Download CV (PDF)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <h2 class="section-title">WRITINGS</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🤖</div>
+                    <div class="project-title">AI Ethics in Cybersecurity</div>
+                </div>
+                <div class="project-description">
+                    Exploring the intersection of artificial intelligence and cybersecurity ethics, 
+                    discussing the implications of AI-powered security systems on privacy and human rights.
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Read Essay</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🎮</div>
+                    <div class="project-title">Gaming Security Analysis</div>
+                </div>
+                <div class="project-description">
+                    A deep dive into the cybersecurity challenges in modern gaming platforms, 
+                    examining vulnerabilities and protection strategies for gamers and developers.
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Read More</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔢</div>
+                    <div class="project-title">Mathematics of Encryption</div>
+                </div>
+                <div class="project-description">
+                    Philosophical and mathematical exploration of cryptography, discussing the beauty and 
+                    complexity of mathematical concepts that protect our digital communications.
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">CONTACT</h2>
+        <div class="contact-terminal">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot orange"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="terminal-title">secure-contact@hamdi-cybersec</div>
+            </div>
+            <div class="terminal-content">
+                <div class="prompt-line">hamdi@cybersec:~$ establish-secure-connection</div>
+                <p style="margin: 1rem 0;">Initializing encrypted communication channel...</p>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Enter your name..." required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="Email address..." required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-input" rows="5" placeholder="Encrypted message..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">TRANSMIT SECURE MESSAGE</button>
+                </form>
+
+                <div class="social-links">
+                    <a href="mailto:hamdiissack30@gmail.com" class="social-link">
+                        <span>📧</span> Professional Email
+                    </a>
+                    <a href="https://github.com/Hamdi-12" class="social-link">
+                        <span>💻</span> GitHub: Hamdi-12
+                    </a>
+                    <a href="https://www.linkedin.com/in/hamdi-abdullahi-925861266?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BnmnpjlNLQUqFC%2FlZrLnCxA%3D%3D" class="social-link">
+                        <span>🔗</span> LinkedIn Profile
+                    </a>
+                </div>
+
+                <div class="prompt-line" style="margin-top: 2rem;">
+                    hamdi@cybersec:~$ status --connection-ready
+                </div>
+                <p style="color: var(--cyber-green);">● SECURE CONNECTION ESTABLISHED</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#home" class="footer-link">Home</a>
+            <a href="#about" class="footer-link">About</a>
+            <a href="#projects" class="footer-link">Projects</a>
+            <a href="#resume" class="footer-link">Resume</a>
+            <a href="#contact" class="footer-link">Contact</a>
+        </div>
+        <p style="color: var(--cyber-green); margin-top: 1rem;">
+            © 2024 Hamdi Ali Abdullahi | Cybersecurity Specialist | All Rights Reserved
+        </p>
+        <p style="color: rgba(0, 255, 0, 0.6); font-size: 0.9rem; margin-top: 0.5rem;">
+            "Securing the digital future, one line of code at a time"
+        </p>
+    </footer>
+
+    <script>
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrixRain');
+            const characters = '0123456789ABCDEF!@#$%^&*()_+-=[]{}|;:,.<>?ハチ';
+            const columns = Math.floor(window.innerWidth / 20);
+
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = i * 20 + 'px';
+                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+
+                let columnText = '';
+                for (let j = 0; j < 20; j++) {
+                    columnText += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = columnText;
+
+                matrixContainer.appendChild(column);
+            }
+        }
+
+        // Typewriter Effect
+        function typeWriter(element, text, speed = 100) {
+            element.innerHTML = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Navigation Active State
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const button = document.querySelector('.submit-btn');
+            const originalText = button.textContent;
+            
+            button.textContent = 'ENCRYPTING MESSAGE...';
+            button.style.background = 'var(--cyber-blue)';
+            
+            setTimeout(() => {
+                button.textContent = 'MESSAGE TRANSMITTED!';
+                button.style.background = 'var(--cyber-green)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'var(--cyber-green)';
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Resume Functions
+        function downloadResume() {
+            const link = document.createElement("a");
+            link.href = 
+            link.download = 
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                }, 500);
+            }, 3000);
+        });
+
+        // Glitch Effect on Hover
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const title = this.querySelector('.project-title');
+                title.classList.add('glitch');
+                title.setAttribute('data-text', title.textContent);
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const title = this.querySelector('.project-title');
+                title.classList.remove('glitch');
+            });
+        });
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            createMatrixRain();
+            
+            // Start typewriter effect after loading
+            setTimeout(() => {
+                const nameElement = document.getElementById('nameDisplay');
+                typeWriter(nameElement, 'HAMDI ALI ABDULLAHI', 100);
+            }, 3500);
+        });
+
+        // Event Listeners
+        window.addEventListener('scroll', updateActiveNav);
+        window.addEventListener('resize', function() {
+            // Recreate matrix rain on resize
+            document.getElementById('matrixRain').innerHTML = '';
+            createMatrixRain();
+        });
+
+        // Easter Eggs
+        let hackSequence = [];
+        const correctSequence = ['h', 'a', 'c', 'k'];
+
+        document.addEventListener('keydown', function(e) {
+            hackSequence.push(e.key.toLowerCase());
+            if (hackSequence.length > correctSequence.length) {
+                hackSequence.shift();
+            }
+            
+            if (JSON.stringify(hackSequence) === JSON.stringify(correctSequence)) {
+                document.body.style.filter = 'hue-rotate(180deg) saturate(2)';
+                alert('🔓 SYSTEM BREACHED! Hack mode activated!');
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 5000);
+                hackSequence = [];
+            }
+        });
+
+        // Console Messages
+        console.log('%c🛡️ HAMDI ALI ABDULLAHI - CYBERSECURITY SPECIALIST', 'color: #00ff00; font-size: 20px; font-weight: bold;');
+        console.log('%c⚠️ WARNING: Unauthorized access detected! This portfolio is monitored.', 'color: #ff0040; font-size: 14px;');
+        console.log('%c💻 Type "hack" to activate special mode', 'color: #00ffff; font-size: 12px;');
+        console.log('%c📧 Contact: hamdi.cybersec@email.com', 'color: #00ff00; font-size: 12px;');
+    </script>
+</body>
+</html>
